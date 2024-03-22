@@ -4,17 +4,19 @@ from bs4 import BeautifulSoup
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
+
 app = FastAPI()
 
 
 class SearchParameters(BaseModel):
-    searchParameters: dict
+    organic: str
 
 
 @app.post("/extract_links")
-async def extract_links_and_text(data: SearchParameters):
+async def extract_links_and_text(data:SearchParameters):
+    lst = eval(data.organic)
     # 提取链接列表
-    links = [item['link'] for item in data.searchParameters['organic']]
+    links = [item['link'] for item in lst]
 
     # 初始化一个空列表来存储所有链接的文本内容
     all_texts = []

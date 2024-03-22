@@ -16,7 +16,7 @@ class SearchParameters(BaseModel):
 async def extract_links_and_text(data:SearchParameters):
     lst = eval(data.organic)
     # 提取链接列表
-    links = [item['link'] for item in lst]
+    links = [item['link'] for item in lst[:3]]
 
     # 初始化一个空列表来存储所有链接的文本内容
     all_texts = []
